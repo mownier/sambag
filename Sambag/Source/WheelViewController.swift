@@ -24,6 +24,8 @@ class WheelViewController: UIViewController {
     var itemHeight: CGFloat = 0
     var gradientColor: UIColor = .white
     var stripColor: UIColor = .black
+    var cellTextColor: UIColor = .black
+    var cellTextFont: UIFont! = UIFont(name: "AvenirNext-Medium", size: 15)
     
     var selectedIndexPath = IndexPath(row: 0, section: 0) {
         didSet {
@@ -88,25 +90,7 @@ class WheelViewController: UIViewController {
         let headerFooter = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CellHeaderFooter")!
         if headerFooter.backgroundView == nil {
             let view = UIView()
-            view.backgroundColor = .clear
-            
-            let gradientLayer = CAGradientLayer()
-            gradientLayer.masksToBounds = true
-            
-            var rect = CGRect.zero
-            rect.size.width = tableView.frame.width
-            rect.size.height = itemHeight
-            
-            switch type {
-            case .header:
-                gradientLayer.colors = [gradientColor.cgColor, UIColor(white: 1.0, alpha: 0.0).cgColor]
-                
-            case .footer:
-                gradientLayer.colors = [UIColor(white: 1.0, alpha: 0.0).cgColor, gradientColor.cgColor]
-            }
-            
-            gradientLayer.frame = rect
-            view.layer.addSublayer(gradientLayer)
+            view.backgroundColor = gradientColor.withAlphaComponent(0.7)
             headerFooter.backgroundView = view
         }
         return headerFooter
@@ -121,9 +105,9 @@ extension WheelViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
-        cell.textLabel?.font = UIFont(name: "AvenirNext-Medium", size: 15)
+        cell.textLabel?.font = cellTextFont
         cell.textLabel?.textAlignment = .center
-        cell.textLabel?.textColor = .black
+        cell.textLabel?.textColor = cellTextColor
         cell.textLabel?.text = items[indexPath.row]
         cell.selectionStyle = .none
         cell.backgroundColor = .clear
