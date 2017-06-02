@@ -12,6 +12,7 @@
 		B9AB7ADC1EE134F600B2EA1B /* SambagTimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AB7AD71EE134F600B2EA1B /* SambagTimePickerViewController.swift */; };
 		B9AB7ADD1EE134F600B2EA1B /* TimeMeridian.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AB7AD81EE134F600B2EA1B /* TimeMeridian.swift */; };
 		B9AB7ADE1EE134F600B2EA1B /* WheelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AB7AD91EE134F600B2EA1B /* WheelViewController.swift */; };
+		B9AB7AE41EE136BC00B2EA1B /* SambagTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AB7AE31EE136BC00B2EA1B /* SambagTheme.swift */; };
 		B9CE3FA21EDFDEA700E833CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CE3FA11EDFDEA700E833CC /* AppDelegate.swift */; };
 		B9CE3FA41EDFDEA700E833CC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CE3FA31EDFDEA700E833CC /* ViewController.swift */; };
 		B9CE3FA71EDFDEA700E833CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9CE3FA51EDFDEA700E833CC /* Main.storyboard */; };
@@ -25,6 +26,7 @@
 		B9AB7AD71EE134F600B2EA1B /* SambagTimePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SambagTimePickerViewController.swift; sourceTree = "<group>"; };
 		B9AB7AD81EE134F600B2EA1B /* TimeMeridian.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeMeridian.swift; sourceTree = "<group>"; };
 		B9AB7AD91EE134F600B2EA1B /* WheelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WheelViewController.swift; sourceTree = "<group>"; };
+		B9AB7AE31EE136BC00B2EA1B /* SambagTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SambagTheme.swift; sourceTree = "<group>"; };
 		B9CE3F9E1EDFDEA600E833CC /* Sambag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sambag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9CE3FA11EDFDEA700E833CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B9CE3FA31EDFDEA700E833CC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +51,7 @@
 			isa = PBXGroup;
 			children = (
 				B9AB7AD51EE134F600B2EA1B /* AlphaTransitioning.swift */,
+				B9AB7AE31EE136BC00B2EA1B /* SambagTheme.swift */,
 				B9AB7AD61EE134F600B2EA1B /* SambagTimePickerResult.swift */,
 				B9AB7AD71EE134F600B2EA1B /* SambagTimePickerViewController.swift */,
 				B9AB7AD81EE134F600B2EA1B /* TimeMeridian.swift */,
@@ -194,6 +197,7 @@
 			files = (
 				B9CE3FA41EDFDEA700E833CC /* ViewController.swift in Sources */,
 				B9AB7ADD1EE134F600B2EA1B /* TimeMeridian.swift in Sources */,
+				B9AB7AE41EE136BC00B2EA1B /* SambagTheme.swift in Sources */,
 				B9CE3FA21EDFDEA700E833CC /* AppDelegate.swift in Sources */,
 				B9AB7ADB1EE134F600B2EA1B /* SambagTimePickerResult.swift in Sources */,
 				B9AB7ADA1EE134F600B2EA1B /* AlphaTransitioning.swift in Sources */,
