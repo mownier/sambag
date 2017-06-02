@@ -10,7 +10,7 @@ import UIKit
 
 public protocol SambagTimePickerViewControllerDelegate: class {
     
-    func sambagTimePickerViewDidPick(_ viewController: SambagTimePickerViewController)
+    func sambagTimePickerViewDidSet(_ viewController: SambagTimePickerViewController, result: SambagTimePickerResult)
     func sambagTimePickerViewDidCancel(_ viewController: SambagTimePickerViewController)
 }
 
@@ -113,6 +113,18 @@ public class SambagTimePickerViewController: UIViewController {
         meridianWheel.gradientColor = hourWheel.gradientColor
         meridianWheel.stripColor = hourWheel.stripColor
         
+        let now = Date()
+        let calendar = Calendar.current
+        var hour = calendar.component(.hour, from: now)
+        let minute = calendar.component(.minute, from: now)
+        let meridian = hour > 12 && hour < 24 ? 1 : 0
+        hour = hour % 12
+        hour = hour == 0 ? 12 : hour
+        
+        hourWheel.selectedIndexPath = IndexPath(row: hour - 1, section: 0)
+        minuteWheel.selectedIndexPath = IndexPath(row: minute, section: 0)
+        meridianWheel.selectedIndexPath = IndexPath(row: meridian, section: 0)
+        
         view.addSubview(contentView)
         contentView.addSubview(titleLabel)
         contentView.addSubview(strip1)
@@ -130,12 +142,6 @@ public class SambagTimePickerViewController: UIViewController {
         hourWheel.didMove(toParentViewController: self)
         minuteWheel.didMove(toParentViewController: self)
         meridianWheel.didMove(toParentViewController: self)
-    }
-    
-    public override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let now = Date()
     }
     
     public override func viewDidLayoutSubviews() {
@@ -207,7 +213,12 @@ public class SambagTimePickerViewController: UIViewController {
     }
     
     func didTapOkay() {
-        delegate?.sambagTimePickerViewDidPick(self)
+        var time = SambagTimePickerResult()
+        time.hour = hourWheel.selectedIndexPath.row + 1
+        time.minute = minuteWheel.selectedIndexPath.row
+        time.meridian = meridianWheel.selectedIndexPath.row == 0 ? .am : .pm
+        
+        delegate?.sambagTimePickerViewDidSet(self, result: time)
     }
     
     func didTapCancel() {

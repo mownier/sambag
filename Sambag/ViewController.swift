@@ -19,7 +19,8 @@ class ViewController: UIViewController {
 
 extension ViewController: SambagTimePickerViewControllerDelegate {
     
-    func sambagTimePickerViewDidPick(_ viewController: SambagTimePickerViewController) {
+    func sambagTimePickerViewDidSet(_ viewController: SambagTimePickerViewController, result: SambagTimePickerResult) {
+        print(result)
         viewController.dismiss(animated: true, completion: nil)
     }
     

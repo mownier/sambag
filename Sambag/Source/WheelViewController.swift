@@ -29,6 +29,7 @@ class WheelViewController: UIViewController {
         didSet {
             guard isViewLoaded, items.count > 0 else { return }
             
+            tableView.reloadData()
             tableView.scrollToRow(at: selectedIndexPath, at: .top, animated: true)
         }
     }
@@ -74,6 +75,13 @@ class WheelViewController: UIViewController {
         
         rect.origin.y = (rect.origin.y * 2) - rect.height
         strip2.frame = rect
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        tableView.reloadData()
+        tableView.scrollToRow(at: selectedIndexPath, at: .top, animated: true)
     }
     
     func dequeueHeaderFooter(from tableView: UITableView, type: SectionAccessoryViewType) -> UITableViewHeaderFooterView {
