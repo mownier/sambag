@@ -32,6 +32,7 @@ public class SambagTimePickerViewController: UIViewController {
     var meridianWheel: WheelViewController!
 
     public weak var delegate: SambagTimePickerViewControllerDelegate?
+    public var theme: SambagTheme = .dark
     
     public convenience init() {
         self.init(nibName: nil, bundle: nil)
@@ -50,34 +51,34 @@ public class SambagTimePickerViewController: UIViewController {
     public override func loadView() {
         super.loadView()
         
+        let attrib = theme.attribute
+        
         view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         
-        let contentViewColor = UIColor.white
-        
         contentView = UIView()
-        contentView.backgroundColor = contentViewColor
+        contentView.backgroundColor = attrib.contentViewBackgroundColor
         contentView.layer.cornerRadius = 3
         contentView.layer.masksToBounds = true
         
         titleLabel = UILabel()
         titleLabel.text = "Set time"
-        titleLabel.textColor = UIColor(red: 61/255, green: 187/255, blue: 234/255, alpha: 1)
-        titleLabel.font = UIFont(name: "AvenirNext-Medium", size: 20)
+        titleLabel.textColor = attrib.titleTextColor
+        titleLabel.font = attrib.titleFont
         
         okayButton = UIButton()
-        okayButton.setTitleColor(.black, for: .normal)
+        okayButton.setTitleColor(attrib.buttonTextColor, for: .normal)
         okayButton.setTitle("Set", for: .normal)
         okayButton.addTarget(self, action: #selector(self.didTapOkay), for: .touchUpInside)
-        okayButton.titleLabel?.font = UIFont(name: "AvenirNext-Regular", size: 15)
+        okayButton.titleLabel?.font = attrib.buttonFont
         
         cancelButton = UIButton()
-        cancelButton.setTitleColor(.black, for: .normal)
+        cancelButton.setTitleColor(attrib.buttonTextColor, for: .normal)
         cancelButton.setTitle("Cancel", for: .normal)
         cancelButton.addTarget(self, action: #selector(self.didTapCancel), for: .touchUpInside)
-        cancelButton.titleLabel?.font = UIFont(name: "AvenirNext-Regular", size: 15)
+        cancelButton.titleLabel?.font = attrib.buttonFont
         
         strip1 = UIView()
-        strip1.backgroundColor = titleLabel.textColor
+        strip1.backgroundColor = attrib.stripColor
         
         strip2 = UIView()
         strip2.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
@@ -92,8 +93,10 @@ public class SambagTimePickerViewController: UIViewController {
         
         hourWheel = WheelViewController()
         hourWheel.items = items
-        hourWheel.gradientColor = contentViewColor
-        hourWheel.stripColor = titleLabel.textColor
+        hourWheel.gradientColor = attrib.contentViewBackgroundColor
+        hourWheel.stripColor = attrib.stripColor
+        hourWheel.cellTextFont = attrib.wheelFont
+        hourWheel.cellTextColor = attrib.wheelTextColor
         
         items.removeAll()
         for i in 0..<60 {
@@ -104,6 +107,8 @@ public class SambagTimePickerViewController: UIViewController {
         minuteWheel.items = items
         minuteWheel.gradientColor = hourWheel.gradientColor
         minuteWheel.stripColor = hourWheel.stripColor
+        minuteWheel.cellTextFont = hourWheel.cellTextFont
+        minuteWheel.cellTextColor = hourWheel.cellTextColor
         
         items.removeAll()
         items.append(contentsOf: ["AM", "PM"])
@@ -112,6 +117,8 @@ public class SambagTimePickerViewController: UIViewController {
         meridianWheel.items = items
         meridianWheel.gradientColor = hourWheel.gradientColor
         meridianWheel.stripColor = hourWheel.stripColor
+        meridianWheel.cellTextFont = hourWheel.cellTextFont
+        meridianWheel.cellTextColor = hourWheel.cellTextColor
         
         let now = Date()
         let calendar = Calendar.current
