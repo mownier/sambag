@@ -7,17 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B9AB7ADA1EE134F600B2EA1B /* AlphaTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AB7AD51EE134F600B2EA1B /* AlphaTransitioning.swift */; };
+		B9AB7ADB1EE134F600B2EA1B /* SambagTimePickerResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AB7AD61EE134F600B2EA1B /* SambagTimePickerResult.swift */; };
+		B9AB7ADC1EE134F600B2EA1B /* SambagTimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AB7AD71EE134F600B2EA1B /* SambagTimePickerViewController.swift */; };
+		B9AB7ADD1EE134F600B2EA1B /* TimeMeridian.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AB7AD81EE134F600B2EA1B /* TimeMeridian.swift */; };
+		B9AB7ADE1EE134F600B2EA1B /* WheelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AB7AD91EE134F600B2EA1B /* WheelViewController.swift */; };
 		B9CE3FA21EDFDEA700E833CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CE3FA11EDFDEA700E833CC /* AppDelegate.swift */; };
 		B9CE3FA41EDFDEA700E833CC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CE3FA31EDFDEA700E833CC /* ViewController.swift */; };
 		B9CE3FA71EDFDEA700E833CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9CE3FA51EDFDEA700E833CC /* Main.storyboard */; };
 		B9CE3FA91EDFDEA700E833CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9CE3FA81EDFDEA700E833CC /* Assets.xcassets */; };
 		B9CE3FAC1EDFDEA700E833CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9CE3FAA1EDFDEA700E833CC /* LaunchScreen.storyboard */; };
-		B9CE3FB61EDFDF0000E833CC /* SambagTimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CE3FB51EDFDF0000E833CC /* SambagTimePickerViewController.swift */; };
-		B9CE3FB81EDFE6E300E833CC /* AlphaTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CE3FB71EDFE6E300E833CC /* AlphaTransitioning.swift */; };
-		B9CE3FBA1EDFF1FE00E833CC /* WheelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CE3FB91EDFF1FE00E833CC /* WheelViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B9AB7AD51EE134F600B2EA1B /* AlphaTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlphaTransitioning.swift; sourceTree = "<group>"; };
+		B9AB7AD61EE134F600B2EA1B /* SambagTimePickerResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SambagTimePickerResult.swift; sourceTree = "<group>"; };
+		B9AB7AD71EE134F600B2EA1B /* SambagTimePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SambagTimePickerViewController.swift; sourceTree = "<group>"; };
+		B9AB7AD81EE134F600B2EA1B /* TimeMeridian.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeMeridian.swift; sourceTree = "<group>"; };
+		B9AB7AD91EE134F600B2EA1B /* WheelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WheelViewController.swift; sourceTree = "<group>"; };
 		B9CE3F9E1EDFDEA600E833CC /* Sambag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sambag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9CE3FA11EDFDEA700E833CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B9CE3FA31EDFDEA700E833CC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -25,9 +32,6 @@
 		B9CE3FA81EDFDEA700E833CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B9CE3FAB1EDFDEA700E833CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B9CE3FAD1EDFDEA700E833CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B9CE3FB51EDFDF0000E833CC /* SambagTimePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SambagTimePickerViewController.swift; sourceTree = "<group>"; };
-		B9CE3FB71EDFE6E300E833CC /* AlphaTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlphaTransitioning.swift; sourceTree = "<group>"; };
-		B9CE3FB91EDFF1FE00E833CC /* WheelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WheelViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +45,52 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B9AB7AD41EE134F600B2EA1B /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				B9AB7AD51EE134F600B2EA1B /* AlphaTransitioning.swift */,
+				B9AB7AD61EE134F600B2EA1B /* SambagTimePickerResult.swift */,
+				B9AB7AD71EE134F600B2EA1B /* SambagTimePickerViewController.swift */,
+				B9AB7AD81EE134F600B2EA1B /* TimeMeridian.swift */,
+				B9AB7AD91EE134F600B2EA1B /* WheelViewController.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		B9AB7ADF1EE134FF00B2EA1B /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				B9CE3FA11EDFDEA700E833CC /* AppDelegate.swift */,
+			);
+			name = Application;
+			sourceTree = "<group>";
+		};
+		B9AB7AE01EE1350E00B2EA1B /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B9CE3FA31EDFDEA700E833CC /* ViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B9AB7AE11EE1352600B2EA1B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B9CE3FA51EDFDEA700E833CC /* Main.storyboard */,
+				B9CE3FA81EDFDEA700E833CC /* Assets.xcassets */,
+				B9CE3FAA1EDFDEA700E833CC /* LaunchScreen.storyboard */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		B9AB7AE21EE1352C00B2EA1B /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				B9CE3FAD1EDFDEA700E833CC /* Info.plist */,
+			);
+			name = "Support Files";
+			sourceTree = "<group>";
+		};
 		B9CE3F951EDFDEA600E833CC = {
 			isa = PBXGroup;
 			children = (
@@ -60,15 +110,11 @@
 		B9CE3FA01EDFDEA600E833CC /* Sambag */ = {
 			isa = PBXGroup;
 			children = (
-				B9CE3FA11EDFDEA700E833CC /* AppDelegate.swift */,
-				B9CE3FA31EDFDEA700E833CC /* ViewController.swift */,
-				B9CE3FA51EDFDEA700E833CC /* Main.storyboard */,
-				B9CE3FA81EDFDEA700E833CC /* Assets.xcassets */,
-				B9CE3FAA1EDFDEA700E833CC /* LaunchScreen.storyboard */,
-				B9CE3FAD1EDFDEA700E833CC /* Info.plist */,
-				B9CE3FB51EDFDF0000E833CC /* SambagTimePickerViewController.swift */,
-				B9CE3FB71EDFE6E300E833CC /* AlphaTransitioning.swift */,
-				B9CE3FB91EDFF1FE00E833CC /* WheelViewController.swift */,
+				B9AB7ADF1EE134FF00B2EA1B /* Application */,
+				B9AB7AE11EE1352600B2EA1B /* Resources */,
+				B9AB7AD41EE134F600B2EA1B /* Source */,
+				B9AB7AE21EE1352C00B2EA1B /* Support Files */,
+				B9AB7AE01EE1350E00B2EA1B /* ViewControllers */,
 			);
 			path = Sambag;
 			sourceTree = "<group>";
@@ -146,11 +192,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9CE3FB61EDFDF0000E833CC /* SambagTimePickerViewController.swift in Sources */,
 				B9CE3FA41EDFDEA700E833CC /* ViewController.swift in Sources */,
-				B9CE3FBA1EDFF1FE00E833CC /* WheelViewController.swift in Sources */,
+				B9AB7ADD1EE134F600B2EA1B /* TimeMeridian.swift in Sources */,
 				B9CE3FA21EDFDEA700E833CC /* AppDelegate.swift in Sources */,
-				B9CE3FB81EDFE6E300E833CC /* AlphaTransitioning.swift in Sources */,
+				B9AB7ADB1EE134F600B2EA1B /* SambagTimePickerResult.swift in Sources */,
+				B9AB7ADA1EE134F600B2EA1B /* AlphaTransitioning.swift in Sources */,
+				B9AB7ADE1EE134F600B2EA1B /* WheelViewController.swift in Sources */,
+				B9AB7ADC1EE134F600B2EA1B /* SambagTimePickerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,6 +362,7 @@
 				B9CE3FB21EDFDEA700E833CC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
