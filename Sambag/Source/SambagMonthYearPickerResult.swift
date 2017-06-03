@@ -8,8 +8,8 @@
 
 public struct SambagMonthYearPickerResult {
 
-    var month: SambagMonth
-    var year: Int
+    public var month: SambagMonth
+    public var year: Int
     
     public init() {
         self.month = .january
