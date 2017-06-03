@@ -10,8 +10,8 @@ import UIKit
 
 public protocol SambagTimePickerViewControllerDelegate: class {
     
-    func sambagTimePickerViewDidSet(_ viewController: SambagTimePickerViewController, result: SambagTimePickerResult)
-    func sambagTimePickerViewDidCancel(_ viewController: SambagTimePickerViewController)
+    func sambagTimePickerDidSet(_ viewController: SambagTimePickerViewController, result: SambagTimePickerResult)
+    func sambagTimePickerDidCancel(_ viewController: SambagTimePickerViewController)
 }
 
 public class SambagTimePickerViewController: UIViewController {
@@ -225,10 +225,10 @@ public class SambagTimePickerViewController: UIViewController {
         time.minute = minuteWheel.selectedIndexPath.row
         time.meridian = meridianWheel.selectedIndexPath.row == 0 ? .am : .pm
         
-        delegate?.sambagTimePickerViewDidSet(self, result: time)
+        delegate?.sambagTimePickerDidSet(self, result: time)
     }
     
     func didTapCancel() {
-        delegate?.sambagTimePickerViewDidCancel(self)
+        delegate?.sambagTimePickerDidCancel(self)
     }
 }

@@ -46,12 +46,12 @@ class ViewController: UIViewController {
 
 extension ViewController: SambagTimePickerViewControllerDelegate {
     
-    func sambagTimePickerViewDidSet(_ viewController: SambagTimePickerViewController, result: SambagTimePickerResult) {
+    func sambagTimePickerDidSet(_ viewController: SambagTimePickerViewController, result: SambagTimePickerResult) {
         print(result)
         viewController.dismiss(animated: true, completion: nil)
     }
     
-    func sambagTimePickerViewDidCancel(_ viewController: SambagTimePickerViewController) {
+    func sambagTimePickerDidCancel(_ viewController: SambagTimePickerViewController) {
         viewController.dismiss(animated: true, completion: nil)
     }
 }
