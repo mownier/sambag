@@ -105,7 +105,11 @@ public class SambagMonthYearPickerViewController: UIViewController {
         monthWheel.selectedIndexPath.row = month - 1
         
         items.removeAll()
-        for i in 0..<50 {
+        let offset: Int = 101
+        for i in 1..<offset {
+            items.append("\(year - (offset - i))")
+        }
+        for i in 0..<offset {
             items.append("\(year + i)")
         }
         
@@ -115,6 +119,7 @@ public class SambagMonthYearPickerViewController: UIViewController {
         yearWheel.stripColor = monthWheel.stripColor
         yearWheel.cellTextFont = monthWheel.cellTextFont
         yearWheel.cellTextColor = monthWheel.cellTextColor
+        yearWheel.selectedIndexPath.row = offset - 1
         
         view.addSubview(contentView)
         contentView.addSubview(titleLabel)
