@@ -10,14 +10,18 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var theme: SambagTheme = .light
+    
     @IBAction func showSambagTimePickerViewController(_ sender: UIButton) {
         let vc = SambagTimePickerViewController()
+        vc.theme = theme
         vc.delegate = self
         present(vc, animated: true, completion: nil)
     }
     
     @IBAction func showSambagMonthYearPickerViewController(_ sender: UIButton) {
         let vc = SambagMonthYearPickerViewController()
+        vc.theme = theme
         vc.delegate = self
         present(vc, animated: true, completion: nil)
 
@@ -25,9 +29,18 @@ class ViewController: UIViewController {
     
     @IBAction func showSambagDatePickerViewController(_ sender: UIButton) {
         let vc = SambagDatePickerViewController()
+        vc.theme = theme
         vc.delegate = self
         present(vc, animated: true, completion: nil)
 
+    }
+    
+    @IBAction func didChangeTheme() {
+        switch theme {
+        case .light: theme = .dark
+        case .dark: theme = .light
+        default: break
+        }
     }
 }
 
