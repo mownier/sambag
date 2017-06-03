@@ -15,6 +15,13 @@ class ViewController: UIViewController {
         vc.delegate = self
         present(vc, animated: true, completion: nil)
     }
+    
+    @IBAction func showSambagMonthYearPickerViewController(_ sender: UIButton) {
+        let vc = SambagMonthYearPickerViewController()
+        vc.delegate = self
+        present(vc, animated: true, completion: nil)
+
+    }
 }
 
 extension ViewController: SambagTimePickerViewControllerDelegate {
@@ -25,6 +32,18 @@ extension ViewController: SambagTimePickerViewControllerDelegate {
     }
     
     func sambagTimePickerViewDidCancel(_ viewController: SambagTimePickerViewController) {
+        viewController.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension ViewController: SambagMonthYearPickerViewControllerDelegate {
+
+    func sambagMonthYearPickerDidSet(_ viewController: SambagMonthYearPickerViewController, result: SambagMonthYearPickerResult) {
+        print(result)
+        viewController.dismiss(animated: true, completion: nil)
+    }
+    
+    func sambagMonthYearPickerDidCancel(_ viewController: SambagMonthYearPickerViewController) {
         viewController.dismiss(animated: true, completion: nil)
     }
 }
