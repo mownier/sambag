@@ -124,7 +124,7 @@ public class SambagTimePickerViewController: UIViewController {
         let calendar = Calendar.current
         var hour = calendar.component(.hour, from: now)
         let minute = calendar.component(.minute, from: now)
-        let meridian = hour > 12 && hour < 24 ? 1 : 0
+        let meridian = hour >= 12 && hour < 24 ? 1 : 0
         hour = hour % 12
         hour = hour == 0 ? 12 : hour
         
