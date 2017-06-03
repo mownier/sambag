@@ -1,5 +1,5 @@
 # Sambag
-Android Time Picker implemented in Swift for iOS development
+Android Time, Month-Year pickers implemented in Swift for iOS development
 
 ## Screenshots
 
