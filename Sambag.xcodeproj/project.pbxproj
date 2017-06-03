@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		B90980961EE2650F00AE4C12 /* SambagMonthYearPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90980951EE2650F00AE4C12 /* SambagMonthYearPickerViewController.swift */; };
 		B90980981EE2655700AE4C12 /* SambagMonthYearPickerResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90980971EE2655700AE4C12 /* SambagMonthYearPickerResult.swift */; };
+		B909809A1EE2844500AE4C12 /* SambagDatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90980991EE2844500AE4C12 /* SambagDatePickerViewController.swift */; };
+		B909809C1EE2846000AE4C12 /* SambagDatePickerResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B909809B1EE2846000AE4C12 /* SambagDatePickerResult.swift */; };
 		B9AB7ADA1EE134F600B2EA1B /* AlphaTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AB7AD51EE134F600B2EA1B /* AlphaTransitioning.swift */; };
 		B9AB7ADB1EE134F600B2EA1B /* SambagTimePickerResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AB7AD61EE134F600B2EA1B /* SambagTimePickerResult.swift */; };
 		B9AB7ADC1EE134F600B2EA1B /* SambagTimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AB7AD71EE134F600B2EA1B /* SambagTimePickerViewController.swift */; };
@@ -25,6 +27,8 @@
 /* Begin PBXFileReference section */
 		B90980951EE2650F00AE4C12 /* SambagMonthYearPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SambagMonthYearPickerViewController.swift; sourceTree = "<group>"; };
 		B90980971EE2655700AE4C12 /* SambagMonthYearPickerResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SambagMonthYearPickerResult.swift; sourceTree = "<group>"; };
+		B90980991EE2844500AE4C12 /* SambagDatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SambagDatePickerViewController.swift; sourceTree = "<group>"; };
+		B909809B1EE2846000AE4C12 /* SambagDatePickerResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SambagDatePickerResult.swift; sourceTree = "<group>"; };
 		B9AB7AD51EE134F600B2EA1B /* AlphaTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlphaTransitioning.swift; sourceTree = "<group>"; };
 		B9AB7AD61EE134F600B2EA1B /* SambagTimePickerResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SambagTimePickerResult.swift; sourceTree = "<group>"; };
 		B9AB7AD71EE134F600B2EA1B /* SambagTimePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SambagTimePickerViewController.swift; sourceTree = "<group>"; };
@@ -55,6 +59,8 @@
 			isa = PBXGroup;
 			children = (
 				B9AB7AD51EE134F600B2EA1B /* AlphaTransitioning.swift */,
+				B909809B1EE2846000AE4C12 /* SambagDatePickerResult.swift */,
+				B90980991EE2844500AE4C12 /* SambagDatePickerViewController.swift */,
 				B90980971EE2655700AE4C12 /* SambagMonthYearPickerResult.swift */,
 				B90980951EE2650F00AE4C12 /* SambagMonthYearPickerViewController.swift */,
 				B9AB7AE31EE136BC00B2EA1B /* SambagTheme.swift */,
@@ -206,11 +212,13 @@
 				B9AB7AE41EE136BC00B2EA1B /* SambagTheme.swift in Sources */,
 				B90980961EE2650F00AE4C12 /* SambagMonthYearPickerViewController.swift in Sources */,
 				B9CE3FA21EDFDEA700E833CC /* AppDelegate.swift in Sources */,
+				B909809C1EE2846000AE4C12 /* SambagDatePickerResult.swift in Sources */,
 				B90980981EE2655700AE4C12 /* SambagMonthYearPickerResult.swift in Sources */,
 				B9AB7ADB1EE134F600B2EA1B /* SambagTimePickerResult.swift in Sources */,
 				B9AB7ADA1EE134F600B2EA1B /* AlphaTransitioning.swift in Sources */,
 				B9AB7ADE1EE134F600B2EA1B /* WheelViewController.swift in Sources */,
 				B9AB7ADC1EE134F600B2EA1B /* SambagTimePickerViewController.swift in Sources */,
+				B909809A1EE2844500AE4C12 /* SambagDatePickerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
