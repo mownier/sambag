@@ -1,5 +1,5 @@
 # Sambag
-Android Time, Month-Year pickers implemented in Swift for iOS development
+Android Time, Month-Year, and Date pickers implemented in Swift for iOS development
 
 ## Screenshots
 
@@ -14,3 +14,9 @@ Android Time, Month-Year pickers implemented in Swift for iOS development
 |||
 |---|---|
 |![Month_Year_Dark](https://raw.githubusercontent.com/mownier/sambag/master/Screenshots/month_year_dark.png) | ![Month_Year_Light](https://raw.githubusercontent.com/mownier/sambag/master/Screenshots/month_year_light.png)|
+
+### Date Picker
+
+|||
+|---|---|
+|![Date_Dark](https://raw.githubusercontent.com/mownier/sambag/master/Screenshots/date_picker_dark.png) | ![Date_Light](https://raw.githubusercontent.com/mownier/sambag/master/Screenshots/date_picker_light.png)|
