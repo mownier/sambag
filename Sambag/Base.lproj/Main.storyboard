@@ -53,10 +53,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Result here" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZsO-Ve-U8q">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="lF1-W0-dE9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ZsO-Ve-U8q" secondAttribute="trailing" constant="16" id="6Zj-Wf-rpw"/>
                             <constraint firstItem="q2d-xR-X3I" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="34" id="DPE-x1-qsu"/>
+                            <constraint firstItem="ZsO-Ve-U8q" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="IC4-Bf-eCa"/>
                             <constraint firstItem="q2d-xR-X3I" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="30" id="IZb-x5-brb"/>
                             <constraint firstItem="Hp8-03-Al0" firstAttribute="leading" secondItem="q2d-xR-X3I" secondAttribute="trailing" constant="11" id="JJP-HT-h02"/>
                             <constraint firstItem="ZtO-XV-P8H" firstAttribute="top" secondItem="UvW-cg-d1f" secondAttribute="bottom" constant="7.5" id="Pnk-BQ-2IU"/>
@@ -66,9 +76,13 @@
                             <constraint firstItem="ehd-cY-rIV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ikL-lb-sYD"/>
                             <constraint firstItem="ehd-cY-rIV" firstAttribute="top" secondItem="ZtO-XV-P8H" secondAttribute="bottom" constant="7.5" id="sN4-FL-WJD"/>
                             <constraint firstAttribute="trailing" secondItem="Hp8-03-Al0" secondAttribute="trailing" constant="25" id="ujX-SM-vuw"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ZsO-Ve-U8q" secondAttribute="bottom" constant="20" id="xXU-wc-GtC"/>
                             <constraint firstItem="Hp8-03-Al0" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="39" id="yo5-js-Gfl"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="resultLabel" destination="ZsO-Ve-U8q" id="t4V-4K-cS1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

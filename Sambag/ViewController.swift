@@ -12,6 +12,8 @@ class ViewController: UIViewController {
 
     var theme: SambagTheme = .light
     
+    @IBOutlet weak var resultLabel: UILabel!
+    
     @IBAction func showSambagTimePickerViewController(_ sender: UIButton) {
         let vc = SambagTimePickerViewController()
         vc.theme = theme
@@ -47,7 +49,7 @@ class ViewController: UIViewController {
 extension ViewController: SambagTimePickerViewControllerDelegate {
     
     func sambagTimePickerDidSet(_ viewController: SambagTimePickerViewController, result: SambagTimePickerResult) {
-        print(result)
+        resultLabel.text = "\(result)"
         viewController.dismiss(animated: true, completion: nil)
     }
     
@@ -59,7 +61,7 @@ extension ViewController: SambagTimePickerViewControllerDelegate {
 extension ViewController: SambagMonthYearPickerViewControllerDelegate {
 
     func sambagMonthYearPickerDidSet(_ viewController: SambagMonthYearPickerViewController, result: SambagMonthYearPickerResult) {
-        print(result)
+        resultLabel.text = "\(result)"
         viewController.dismiss(animated: true, completion: nil)
     }
     
@@ -71,7 +73,7 @@ extension ViewController: SambagMonthYearPickerViewControllerDelegate {
 extension ViewController: SambagDatePickerViewControllerDelegate {
 
     func sambagDatePickerDidSet(_ viewController: SambagDatePickerViewController, result: SambagDatePickerResult) {
-        print(result)
+        resultLabel.text = "\(result)"
         viewController.dismiss(animated: true, completion: nil)
     }
     
