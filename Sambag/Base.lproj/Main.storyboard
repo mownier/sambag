@@ -24,11 +24,19 @@
                                     <action selector="showSambagTimePickerViewController:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5cY-xw-Djk"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ehd-cY-rIV">
+                                <state key="normal" title="Show Month Year Picker"/>
+                                <connections>
+                                    <action selector="showSambagMonthYearPickerViewController:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tgy-0i-cbx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="ZtO-XV-P8H" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WsW-Tz-5Wi"/>
                             <constraint firstItem="ZtO-XV-P8H" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="iM0-GH-IwS"/>
+                            <constraint firstItem="ehd-cY-rIV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ikL-lb-sYD"/>
+                            <constraint firstItem="ehd-cY-rIV" firstAttribute="top" secondItem="ZtO-XV-P8H" secondAttribute="bottom" constant="7.5" id="sN4-FL-WJD"/>
                         </constraints>
                     </view>
                 </viewController>
