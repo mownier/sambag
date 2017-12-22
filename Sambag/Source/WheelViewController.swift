@@ -31,7 +31,6 @@ class WheelViewController: UIViewController {
         didSet {
             guard isViewLoaded, items.count > 0 else { return }
             
-            tableView.reloadData()
             tableView.scrollToRow(at: selectedIndexPath, at: .top, animated: true)
         }
     }
@@ -42,6 +41,8 @@ class WheelViewController: UIViewController {
         view.backgroundColor = .clear
         
         tableView = UITableView(frame: .zero, style: .plain)
+        tableView.rowHeight = 0
+        tableView.estimatedRowHeight = 0
         tableView.backgroundColor = .clear
         tableView.tableFooterView = UIView()
         tableView.dataSource = self
@@ -49,6 +50,7 @@ class WheelViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         tableView.bounces = false
+        tableView.delaysContentTouches = true
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         tableView.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "CellHeaderFooter")
@@ -64,25 +66,30 @@ class WheelViewController: UIViewController {
         view.addSubview(strip2)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tableView.reloadData()
+    }
+    
     override func viewDidLayoutSubviews() {
         var rect = CGRect.zero
         
-        rect.size = view.frame.size
+        rect.size = view.bounds.size
         tableView.frame = rect
         
         rect.size.height = 2
-        rect.size.width = view.frame.width
-        rect.origin.y = view.frame.height / 3
+        rect.size.width = view.bounds.width
+        rect.origin.y = view.bounds.height / 3
         strip1.frame = rect
         
         rect.origin.y = (rect.origin.y * 2) - rect.height
         strip2.frame = rect
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        tableView.reloadData()
         tableView.scrollToRow(at: selectedIndexPath, at: .top, animated: true)
     }
     
@@ -143,10 +150,11 @@ extension WheelViewController: UITableViewDelegate {
             x: scrollView.center.x + scrollView.contentOffset.x,
             y: scrollView.center.y + scrollView.contentOffset.y
         )
+
         let indexPath = tableView.indexPathForRow(at: point)
         
         guard indexPath != nil else { return }
-        
+
         selectedIndexPath = indexPath!
     }
     
