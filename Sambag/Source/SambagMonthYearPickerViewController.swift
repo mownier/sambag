@@ -14,6 +14,12 @@ public protocol SambagMonthYearPickerViewControllerDelegate: class {
     func sambagMonthYearPickerDidCancel(_ viewController: SambagMonthYearPickerViewController)
 }
 
+@objc protocol SambagMonthYearPickerViewControllerInteraction: class {
+    
+    func didTapSet()
+    func didTapCancel()
+}
+
 public class SambagMonthYearPickerViewController: UIViewController {
     
     lazy var alphaTransition = AlphaTransitioning()
@@ -30,6 +36,13 @@ public class SambagMonthYearPickerViewController: UIViewController {
     var monthWheel: WheelViewController!
     var yearWheel: WheelViewController!
 
+    var result: SambagMonthYearPickerResult {
+        var result = SambagMonthYearPickerResult()
+        result.month = SambagMonth(rawValue: monthWheel.selectedIndexPath.row + 1)!
+        result.year = Int(yearWheel.items[yearWheel.selectedIndexPath.row])!
+        return result
+    }
+    
     public weak var delegate: SambagMonthYearPickerViewControllerDelegate?
     public var theme: SambagTheme = .dark
     
@@ -200,6 +213,9 @@ public class SambagMonthYearPickerViewController: UIViewController {
         transitioningDelegate = alphaTransition
         modalPresentationStyle = .custom
     }
+}
+
+extension SambagMonthYearPickerViewController: SambagMonthYearPickerViewControllerInteraction {
     
     func didTapSet() {
         var result = SambagMonthYearPickerResult()

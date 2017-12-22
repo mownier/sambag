@@ -14,6 +14,12 @@ public protocol SambagTimePickerViewControllerDelegate: class {
     func sambagTimePickerDidCancel(_ viewController: SambagTimePickerViewController)
 }
 
+@objc protocol SambagTimePickerViewControllerInteraction: class {
+    
+    func didTapOkay()
+    func didTapCancel()
+}
+
 public class SambagTimePickerViewController: UIViewController {
 
     lazy var alphaTransition = AlphaTransitioning()
@@ -31,6 +37,14 @@ public class SambagTimePickerViewController: UIViewController {
     var minuteWheel: WheelViewController!
     var meridianWheel: WheelViewController!
 
+    var result: SambagTimePickerResult {
+        var result = SambagTimePickerResult()
+        result.hour = hourWheel.selectedIndexPath.row + 1
+        result.minute = minuteWheel.selectedIndexPath.row
+        result.meridian = meridianWheel.selectedIndexPath.row == 0 ? .am : .pm
+        return result
+    }
+    
     public weak var delegate: SambagTimePickerViewControllerDelegate?
     public var theme: SambagTheme = .dark
     
@@ -218,14 +232,12 @@ public class SambagTimePickerViewController: UIViewController {
         transitioningDelegate = alphaTransition
         modalPresentationStyle = .custom
     }
+}
+
+extension SambagTimePickerViewController: SambagTimePickerViewControllerInteraction {
     
     func didTapOkay() {
-        var time = SambagTimePickerResult()
-        time.hour = hourWheel.selectedIndexPath.row + 1
-        time.minute = minuteWheel.selectedIndexPath.row
-        time.meridian = meridianWheel.selectedIndexPath.row == 0 ? .am : .pm
-        
-        delegate?.sambagTimePickerDidSet(self, result: time)
+        delegate?.sambagTimePickerDidSet(self, result: result)
     }
     
     func didTapCancel() {

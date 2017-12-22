@@ -14,6 +14,12 @@ public protocol SambagDatePickerViewControllerDelegate: class {
     func sambagDatePickerDidCancel(_ viewController: SambagDatePickerViewController)
 }
 
+@objc protocol SambagDatePickerViewControllerInteraction: class {
+    
+    func didTapSet()
+    func didTapCancel()
+}
+
 public class SambagDatePickerViewController: UIViewController {
     
     lazy var alphaTransition = AlphaTransitioning()
@@ -30,6 +36,14 @@ public class SambagDatePickerViewController: UIViewController {
     var monthWheel: WheelViewController!
     var yearWheel: WheelViewController!
     var dayWheel: WheelViewController!
+    
+    var result: SambagDatePickerResult {
+        var result = SambagDatePickerResult()
+        result.month = SambagMonth(rawValue: monthWheel.selectedIndexPath.row + 1)!
+        result.year = Int(yearWheel.items[yearWheel.selectedIndexPath.row])!
+        result.day = dayWheel.selectedIndexPath.row + 1
+        return result
+    }
     
     public weak var delegate: SambagDatePickerViewControllerDelegate?
     public var theme: SambagTheme = .dark
@@ -229,6 +243,9 @@ public class SambagDatePickerViewController: UIViewController {
         transitioningDelegate = alphaTransition
         modalPresentationStyle = .custom
     }
+}
+
+extension SambagDatePickerViewController: SambagDatePickerViewControllerInteraction {
     
     func didTapSet() {
         delegate?.sambagDatePickerDidSet(self, result: result)
@@ -236,14 +253,6 @@ public class SambagDatePickerViewController: UIViewController {
     
     func didTapCancel() {
         delegate?.sambagDatePickerDidCancel(self)
-    }
-    
-    fileprivate var result: SambagDatePickerResult {
-        var result = SambagDatePickerResult()
-        result.month = SambagMonth(rawValue: monthWheel.selectedIndexPath.row + 1)!
-        result.year = Int(yearWheel.items[yearWheel.selectedIndexPath.row])!
-        result.day = dayWheel.selectedIndexPath.row + 1
-        return result
     }
 }
 
