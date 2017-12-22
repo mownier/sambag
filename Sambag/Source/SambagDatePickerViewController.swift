@@ -33,6 +33,7 @@ public class SambagDatePickerViewController: UIViewController {
     
     public weak var delegate: SambagDatePickerViewControllerDelegate?
     public var theme: SambagTheme = .dark
+    public var suggestor: SambagDatePickerResultSuggestor = SambagDatePickerResult.Suggestor()
     
     public convenience init() {
         self.init(nibName: nil, bundle: nil)
@@ -99,6 +100,7 @@ public class SambagDatePickerViewController: UIViewController {
         }
         
         monthWheel = WheelViewController()
+        monthWheel.delegate = self
         monthWheel.items = items
         monthWheel.gradientColor = attrib.contentViewBackgroundColor
         monthWheel.stripColor = attrib.stripColor
@@ -116,6 +118,7 @@ public class SambagDatePickerViewController: UIViewController {
         }
         
         yearWheel = WheelViewController()
+        yearWheel.delegate = self
         yearWheel.items = items
         yearWheel.gradientColor = monthWheel.gradientColor
         yearWheel.stripColor = monthWheel.stripColor
@@ -129,6 +132,7 @@ public class SambagDatePickerViewController: UIViewController {
         }
         
         dayWheel = WheelViewController()
+        dayWheel.delegate = self
         dayWheel.items = items
         dayWheel.gradientColor = monthWheel.gradientColor
         dayWheel.stripColor = monthWheel.stripColor
@@ -227,14 +231,41 @@ public class SambagDatePickerViewController: UIViewController {
     }
     
     func didTapSet() {
-        var result = SambagDatePickerResult()
-        result.month = SambagMonth(rawValue: monthWheel.selectedIndexPath.row + 1)!
-        result.year = Int(yearWheel.items[yearWheel.selectedIndexPath.row])!
-        result.day = dayWheel.selectedIndexPath.row + 1
         delegate?.sambagDatePickerDidSet(self, result: result)
     }
     
     func didTapCancel() {
         delegate?.sambagDatePickerDidCancel(self)
+    }
+    
+    fileprivate var result: SambagDatePickerResult {
+        var result = SambagDatePickerResult()
+        result.month = SambagMonth(rawValue: monthWheel.selectedIndexPath.row + 1)!
+        result.year = Int(yearWheel.items[yearWheel.selectedIndexPath.row])!
+        result.day = dayWheel.selectedIndexPath.row + 1
+        return result
+    }
+}
+
+extension SambagDatePickerViewController: WheelViewControllerDelegate {
+    
+    func wheelViewController(_ wheel: WheelViewController, didSelectItemAtRow row: Int) {
+        let suggested = suggestor.suggestedResult(from: result)
+        
+        guard suggested != result else {
+            return
+        }
+        
+        if suggested.month != result.month {
+            monthWheel.selectedIndexPath.row = suggested.month.rawValue - 1
+        }
+        
+        if suggested.day != result.day {
+            dayWheel.selectedIndexPath.row = suggested.day - 1
+        }
+        
+        if suggested.year != result.year {
+            yearWheel.selectedIndexPath.row = suggested.year - 1
+        }
     }
 }
