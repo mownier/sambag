@@ -8,12 +8,19 @@
 
 import UIKit
 
-class WheelViewController: UIViewController {
+protocol WheelViewControllerDelegate: class {
+    
+    func wheelViewController(_ viewController: WheelViewController, didSelectItemAtRow row: Int)
+}
 
+class WheelViewController: UIViewController {
+    
     enum SectionAccessoryViewType {
         
         case header, footer
     }
+    
+    weak var delegate: WheelViewControllerDelegate?
     
     var tableView: UITableView!
     var items: [String] = []
@@ -29,9 +36,13 @@ class WheelViewController: UIViewController {
     
     var selectedIndexPath = IndexPath(row: 0, section: 0) {
         didSet {
-            guard isViewLoaded, items.count > 0 else { return }
+            guard isViewLoaded, items.count > 0,
+                selectedIndexPath.row >= 0, selectedIndexPath.row < items.count else {
+                    return
+            }
             
             tableView.scrollToRow(at: selectedIndexPath, at: .top, animated: true)
+            delegate?.wheelViewController(self, didSelectItemAtRow: selectedIndexPath.row)
         }
     }
     
