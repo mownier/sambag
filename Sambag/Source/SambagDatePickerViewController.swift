@@ -177,7 +177,7 @@ public class SambagDatePickerViewController: UIViewController {
         var rect = CGRect.zero
         
         let contentViewHorizontalMargin: CGFloat = 20
-        let contentViewWidth: CGFloat = view.frame.width - contentViewHorizontalMargin * 2
+        let contentViewWidth: CGFloat = min(368, view.frame.width - contentViewHorizontalMargin * 2)
         
         rect.origin.x = 20
         rect.size.width = contentViewWidth - rect.origin.x * 2
@@ -233,10 +233,19 @@ public class SambagDatePickerViewController: UIViewController {
         okayButton.frame = rect
         
         rect.size.height = rect.maxY
-        rect.origin.x = contentViewHorizontalMargin
         rect.size.width = contentViewWidth
+        rect.origin.x = (view.frame.width - rect.width) / 2
         rect.origin.y = (view.frame.height - rect.height) / 2
         contentView.frame = rect
+        contentView.bounds.size = rect.size
+        
+        if view.frame.height < rect.height + 10 {
+            let scale = view.frame.height / (rect.height + 10)
+            contentView.transform = CGAffineTransform(scaleX: scale, y: scale)
+            
+        } else {
+            contentView.transform = CGAffineTransform.identity
+        }
     }
     
     func initSetup() {
