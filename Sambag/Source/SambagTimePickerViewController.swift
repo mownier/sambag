@@ -146,23 +146,6 @@ public class SambagTimePickerViewController: UIViewController {
         minuteWheel.selectedIndexPath = IndexPath(row: minute, section: 0)
         meridianWheel.selectedIndexPath = IndexPath(row: meridian, section: 0)
         
-        view.addSubview(contentView)
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(strip1)
-        contentView.addSubview(strip2)
-        contentView.addSubview(strip3)
-        contentView.addSubview(okayButton)
-        contentView.addSubview(cancelButton)
-        contentView.addSubview(hourWheel.view)
-        contentView.addSubview(minuteWheel.view)
-        contentView.addSubview(meridianWheel.view)
-        
-        addChildViewController(hourWheel)
-        addChildViewController(minuteWheel)
-        addChildViewController(meridianWheel)
-        hourWheel.didMove(toParentViewController: self)
-        minuteWheel.didMove(toParentViewController: self)
-        meridianWheel.didMove(toParentViewController: self)
     }
     
     public override func viewDidLayoutSubviews() {
@@ -234,6 +217,26 @@ public class SambagTimePickerViewController: UIViewController {
             
         } else {
             contentView.transform = CGAffineTransform.identity
+        }
+        
+        if(contentView.superview == nil) {
+            view.addSubview(contentView)
+            contentView.addSubview(titleLabel)
+            contentView.addSubview(strip1)
+            contentView.addSubview(strip2)
+            contentView.addSubview(strip3)
+            contentView.addSubview(okayButton)
+            contentView.addSubview(cancelButton)
+            contentView.addSubview(hourWheel.view)
+            contentView.addSubview(minuteWheel.view)
+            contentView.addSubview(meridianWheel.view)
+            
+            addChildViewController(hourWheel)
+            addChildViewController(minuteWheel)
+            addChildViewController(meridianWheel)
+            hourWheel.didMove(toParentViewController: self)
+            minuteWheel.didMove(toParentViewController: self)
+            meridianWheel.didMove(toParentViewController: self)
         }
     }
     

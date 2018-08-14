@@ -134,20 +134,6 @@ public class SambagMonthYearPickerViewController: UIViewController {
         yearWheel.cellTextColor = monthWheel.cellTextColor
         yearWheel.selectedIndexPath.row = offset - 1
         
-        view.addSubview(contentView)
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(strip1)
-        contentView.addSubview(strip2)
-        contentView.addSubview(strip3)
-        contentView.addSubview(okayButton)
-        contentView.addSubview(cancelButton)
-        contentView.addSubview(monthWheel.view)
-        contentView.addSubview(yearWheel.view)
-        
-        addChildViewController(monthWheel)
-        addChildViewController(yearWheel)
-        monthWheel.didMove(toParentViewController: self)
-        yearWheel.didMove(toParentViewController: self)
     }
     
     public override func viewDidLayoutSubviews() {
@@ -215,6 +201,23 @@ public class SambagMonthYearPickerViewController: UIViewController {
             
         } else {
             contentView.transform = CGAffineTransform.identity
+        }
+        
+        if(contentView.superview == nil) {
+            view.addSubview(contentView)
+            contentView.addSubview(titleLabel)
+            contentView.addSubview(strip1)
+            contentView.addSubview(strip2)
+            contentView.addSubview(strip3)
+            contentView.addSubview(okayButton)
+            contentView.addSubview(cancelButton)
+            contentView.addSubview(monthWheel.view)
+            contentView.addSubview(yearWheel.view)
+            
+            addChildViewController(monthWheel)
+            addChildViewController(yearWheel)
+            monthWheel.didMove(toParentViewController: self)
+            yearWheel.didMove(toParentViewController: self)
         }
     }
     
