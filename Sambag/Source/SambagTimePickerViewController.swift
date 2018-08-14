@@ -26,6 +26,7 @@ public class SambagTimePickerViewController: UIViewController {
     
     var contentView: UIView!
     var titleLabel: UILabel!
+    var delimiterLabel: UILabel!
     var strip1: UIView!
     var strip2: UIView!
     var strip3: UIView!
@@ -36,12 +37,16 @@ public class SambagTimePickerViewController: UIViewController {
     var hourWheel: WheelViewController!
     var minuteWheel: WheelViewController!
     var meridianWheel: WheelViewController!
+    
+    var is24Format:Bool!
 
     var result: SambagTimePickerResult {
         var result = SambagTimePickerResult()
-        result.hour = hourWheel.selectedIndexPath.row + 1
+        
+        result.hour = hourWheel.selectedIndexPath.row + (is24Format ? 0 : 1)
         result.minute = minuteWheel.selectedIndexPath.row
-        result.meridian = meridianWheel.selectedIndexPath.row == 0 ? .am : .pm
+        result.meridian = meridianWheel?.selectedIndexPath.row == 0 ? .am : .pm
+        result.is24 = is24Format
         return result
     }
     
@@ -66,6 +71,7 @@ public class SambagTimePickerViewController: UIViewController {
         super.loadView()
         
         let attrib = theme.attribute
+        is24Format = attrib.is24
         
         view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         
@@ -78,6 +84,12 @@ public class SambagTimePickerViewController: UIViewController {
         titleLabel.text = "Set time"
         titleLabel.textColor = attrib.titleTextColor
         titleLabel.font = attrib.titleFont
+        
+        delimiterLabel = UILabel()
+        delimiterLabel.text = ":"
+        delimiterLabel.textColor = attrib.wheelTextColor
+        delimiterLabel.font = attrib.wheelFont
+        delimiterLabel.textAlignment = .center
         
         okayButton = UIButton()
         okayButton.setTitleColor(attrib.buttonTextColor, for: .normal)
@@ -101,8 +113,16 @@ public class SambagTimePickerViewController: UIViewController {
         strip3.backgroundColor = strip2.backgroundColor
         
         var items = [String]()
-        for i in 1..<13 {
-            items.append("\(i)")
+        
+        
+        if(is24Format) {
+            for i in 0..<24 {
+                items.append("\(i)")
+            }
+        } else {
+            for i in 1..<13 {
+                items.append("\(i)")
+            }
         }
         
         hourWheel = WheelViewController()
@@ -124,27 +144,32 @@ public class SambagTimePickerViewController: UIViewController {
         minuteWheel.cellTextFont = hourWheel.cellTextFont
         minuteWheel.cellTextColor = hourWheel.cellTextColor
         
-        items.removeAll()
-        items.append(contentsOf: ["AM", "PM"])
-        
-        meridianWheel = WheelViewController()
-        meridianWheel.items = items
-        meridianWheel.gradientColor = hourWheel.gradientColor
-        meridianWheel.stripColor = hourWheel.stripColor
-        meridianWheel.cellTextFont = hourWheel.cellTextFont
-        meridianWheel.cellTextColor = hourWheel.cellTextColor
-        
         let now = Date()
         let calendar = Calendar.current
         var hour = calendar.component(.hour, from: now)
         let minute = calendar.component(.minute, from: now)
-        let meridian = hour >= 12 && hour < 24 ? 1 : 0
-        hour = hour % 12
-        hour = hour == 0 ? 12 : hour
         
-        hourWheel.selectedIndexPath = IndexPath(row: hour - 1, section: 0)
+        if(!is24Format) {
+            items.removeAll()
+            items.append(contentsOf: ["AM", "PM"])
+            
+            meridianWheel = WheelViewController()
+            meridianWheel.items = items
+            meridianWheel.gradientColor = hourWheel.gradientColor
+            meridianWheel.stripColor = hourWheel.stripColor
+            meridianWheel.cellTextFont = hourWheel.cellTextFont
+            meridianWheel.cellTextColor = hourWheel.cellTextColor
+            
+            let meridian = hour >= 12 && hour < 24 ? 1 : 0
+            hour = hour % 12
+            hour = hour == 0 ? 12 : hour
+            hour -= 1
+            
+            meridianWheel.selectedIndexPath = IndexPath(row: meridian, section: 0)
+        }
+        
+        hourWheel.selectedIndexPath = IndexPath(row: hour, section: 0)
         minuteWheel.selectedIndexPath = IndexPath(row: minute, section: 0)
-        meridianWheel.selectedIndexPath = IndexPath(row: meridian, section: 0)
         
     }
     
@@ -166,9 +191,9 @@ public class SambagTimePickerViewController: UIViewController {
         rect.size.height = 2
         strip1.frame = rect
         
-        let wheelWidth: CGFloat = 56
+        let wheelWidth: CGFloat = is24Format ? 72 : 56
         let wheelSpacing: CGFloat = 24
-        let totalWidth: CGFloat = wheelWidth * 3 + wheelSpacing * 2
+        let totalWidth: CGFloat = is24Format ? (wheelWidth * 2 + wheelSpacing) : wheelWidth * 3 + wheelSpacing * 2
         
         rect.origin.y = rect.maxY + 20
         rect.size.width = wheelWidth
@@ -177,13 +202,22 @@ public class SambagTimePickerViewController: UIViewController {
         hourWheel.itemHeight = rect.height / 3
         hourWheel.view.frame = rect
         
+        var delimiterRect = rect
+        delimiterRect.size.width = wheelSpacing
+        delimiterRect.origin.x = rect.maxX
+        delimiterLabel.frame = delimiterRect
+        
         rect.origin.x = rect.maxX + wheelSpacing
         minuteWheel.itemHeight = hourWheel.itemHeight
         minuteWheel.view.frame = rect
         
-        rect.origin.x = rect.maxX + wheelSpacing
-        meridianWheel.itemHeight = hourWheel.itemHeight
-        meridianWheel.view.frame = rect
+        if(is24Format) {
+            
+        } else {
+            rect.origin.x = rect.maxX + wheelSpacing
+            meridianWheel.itemHeight = hourWheel.itemHeight
+            meridianWheel.view.frame = rect
+        }
         
         rect.origin.y = rect.maxY + 20
         rect.origin.x = 0
@@ -227,16 +261,22 @@ public class SambagTimePickerViewController: UIViewController {
             contentView.addSubview(strip3)
             contentView.addSubview(okayButton)
             contentView.addSubview(cancelButton)
+            contentView.addSubview(delimiterLabel)
             contentView.addSubview(hourWheel.view)
             contentView.addSubview(minuteWheel.view)
-            contentView.addSubview(meridianWheel.view)
+            
+            if(!is24Format) {
+                contentView.addSubview(meridianWheel.view)
+                addChildViewController(meridianWheel)
+                meridianWheel.didMove(toParentViewController: self)
+            }
             
             addChildViewController(hourWheel)
             addChildViewController(minuteWheel)
-            addChildViewController(meridianWheel)
+            
             hourWheel.didMove(toParentViewController: self)
             minuteWheel.didMove(toParentViewController: self)
-            meridianWheel.didMove(toParentViewController: self)
+            
         }
     }
     

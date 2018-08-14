@@ -18,6 +18,7 @@ public struct SambagThemeAttribute {
     public var wheelTextColor: UIColor!
     public var buttonFont: UIFont!
     public var buttonTextColor: UIColor!
+    public var is24:Bool!
     
     public init() {
         contentViewBackgroundColor = .white
@@ -28,6 +29,17 @@ public struct SambagThemeAttribute {
         wheelTextColor = .black
         buttonFont = UIFont(name: "AvenirNext-Regular", size: 15)
         buttonTextColor = .black
+        is24 = is24Format()
+    }
+    
+    func is24Format() -> Bool {
+        let locale = NSLocale.current
+        let formatter : String = DateFormatter.dateFormat(fromTemplate: "j", options:0, locale:locale)!
+        if (formatter.contains("a")) {
+            return false
+        } else {
+            return true
+        }
     }
 }
 
