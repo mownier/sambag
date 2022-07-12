@@ -8,13 +8,13 @@
 
 import UIKit
 
-public protocol SambagTimePickerViewControllerDelegate: class {
+public protocol SambagTimePickerViewControllerDelegate: AnyObject {
     
     func sambagTimePickerDidSet(_ viewController: SambagTimePickerViewController, result: SambagTimePickerResult)
     func sambagTimePickerDidCancel(_ viewController: SambagTimePickerViewController)
 }
 
-@objc protocol SambagTimePickerViewControllerInteraction: class {
+@objc protocol SambagTimePickerViewControllerInteraction: AnyObject {
     
     func didTapOkay()
     func didTapCancel()
@@ -267,15 +267,15 @@ public class SambagTimePickerViewController: UIViewController {
             
             if(!is24Format) {
                 contentView.addSubview(meridianWheel.view)
-                addChildViewController(meridianWheel)
-                meridianWheel.didMove(toParentViewController: self)
+                addChild(meridianWheel)
+                meridianWheel.didMove(toParent: self)
             }
             
-            addChildViewController(hourWheel)
-            addChildViewController(minuteWheel)
+            addChild(hourWheel)
+            addChild(minuteWheel)
             
-            hourWheel.didMove(toParentViewController: self)
-            minuteWheel.didMove(toParentViewController: self)
+            hourWheel.didMove(toParent: self)
+            minuteWheel.didMove(toParent: self)
             
         }
     }

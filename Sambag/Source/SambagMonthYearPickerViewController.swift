@@ -8,13 +8,13 @@
 
 import UIKit
 
-public protocol SambagMonthYearPickerViewControllerDelegate: class {
+public protocol SambagMonthYearPickerViewControllerDelegate: AnyObject {
     
     func sambagMonthYearPickerDidSet(_ viewController: SambagMonthYearPickerViewController, result: SambagMonthYearPickerResult)
     func sambagMonthYearPickerDidCancel(_ viewController: SambagMonthYearPickerViewController)
 }
 
-@objc protocol SambagMonthYearPickerViewControllerInteraction: class {
+@objc protocol SambagMonthYearPickerViewControllerInteraction: AnyObject {
     
     func didTapSet()
     func didTapCancel()
@@ -214,10 +214,10 @@ public class SambagMonthYearPickerViewController: UIViewController {
             contentView.addSubview(monthWheel.view)
             contentView.addSubview(yearWheel.view)
             
-            addChildViewController(monthWheel)
-            addChildViewController(yearWheel)
-            monthWheel.didMove(toParentViewController: self)
-            yearWheel.didMove(toParentViewController: self)
+            addChild(monthWheel)
+            addChild(yearWheel)
+            monthWheel.didMove(toParent: self)
+            yearWheel.didMove(toParent: self)
         }
     }
     

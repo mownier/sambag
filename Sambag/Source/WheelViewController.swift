@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol WheelViewControllerDelegate: class {
+protocol WheelViewControllerDelegate: AnyObject {
     
     func wheelViewController(_ viewController: WheelViewController, didSelectItemAtRow row: Int)
 }
