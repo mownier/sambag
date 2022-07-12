@@ -9,4 +9,5 @@ Pod::Spec.new do |s|
   s.source   = { :git => 'https://github.com/mownier/sambag.git', :tag => s.version.to_s }
   s.source_files = 'Sambag/Source/*.swift'
   s.requires_arc = true
+  s.swift_versions = ['4.2', '5']
 end
