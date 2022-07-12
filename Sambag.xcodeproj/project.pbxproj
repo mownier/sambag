@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		48CF834C287D23BB00BB835A /* SambagSelectionLimit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CF834B287D23BB00BB835A /* SambagSelectionLimit.swift */; };
 		B90980961EE2650F00AE4C12 /* SambagMonthYearPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90980951EE2650F00AE4C12 /* SambagMonthYearPickerViewController.swift */; };
 		B90980981EE2655700AE4C12 /* SambagMonthYearPickerResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90980971EE2655700AE4C12 /* SambagMonthYearPickerResult.swift */; };
 		B909809A1EE2844500AE4C12 /* SambagDatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90980991EE2844500AE4C12 /* SambagDatePickerViewController.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		48CF834B287D23BB00BB835A /* SambagSelectionLimit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SambagSelectionLimit.swift; sourceTree = "<group>"; };
 		B90980951EE2650F00AE4C12 /* SambagMonthYearPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SambagMonthYearPickerViewController.swift; sourceTree = "<group>"; };
 		B90980971EE2655700AE4C12 /* SambagMonthYearPickerResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SambagMonthYearPickerResult.swift; sourceTree = "<group>"; };
 		B90980991EE2844500AE4C12 /* SambagDatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SambagDatePickerViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				B9AB7AD71EE134F600B2EA1B /* SambagTimePickerViewController.swift */,
 				B9AB7AD81EE134F600B2EA1B /* TimeMeridian.swift */,
 				B9AB7AD91EE134F600B2EA1B /* WheelViewController.swift */,
+				48CF834B287D23BB00BB835A /* SambagSelectionLimit.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -209,6 +212,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48CF834C287D23BB00BB835A /* SambagSelectionLimit.swift in Sources */,
 				B9CE3FA41EDFDEA700E833CC /* ViewController.swift in Sources */,
 				B9AB7ADD1EE134F600B2EA1B /* TimeMeridian.swift in Sources */,
 				B9AB7AE41EE136BC00B2EA1B /* SambagTheme.swift in Sources */,
