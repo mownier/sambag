@@ -116,3 +116,29 @@ extension SambagDatePickerResult {
         }
     }
 }
+
+public enum SambagDayOfWeek: Int {
+    
+    case sunday = 1
+    case monday
+    case tuesday
+    case wednesday
+    case thursday
+    case friday
+    case saturday
+}
+
+extension SambagDayOfWeek: CustomStringConvertible {
+    
+    public var description: String {
+        switch self {
+        case .sunday: return "SUN"
+        case .monday: return "MON"
+        case .tuesday: return "TUE"
+        case .wednesday: return "WED"
+        case .thursday: return "THU"
+        case .friday: return "FRI"
+        case .saturday: return "SAT"
+        }
+    }
+}
