@@ -1,6 +1,44 @@
 # Sambag
 Android Time, Month-Year, and Date pickers implemented in Swift for iOS development
 
+## Date Picker
+
+Specifying min and max date
+
+```swift
+let vc = SambagDatePickerViewController()
+var limit = SambagSelectionLimit()
+limit.selectedDate = Date()
+let calendar = Calendar.current
+limit.minDate = calendar.date(
+    byAdding: .year,
+    value: -50,
+    to: limit.selectedDate,
+    wrappingComponents: false
+)
+limit.maxDate = calendar.date(
+    byAdding: .year,
+    value: 50,
+    to: limit.selectedDate,
+    wrappingComponents: false
+)
+vc.limit = limit
+```
+
+Showing day of week
+
+```swift
+let vc = SambagDatePickerViewController()
+vc.hasDayOfWeek = true 
+```
+
+Hiding day of week
+
+```swift
+let vc = SambagDatePickerViewController()
+vc.hasDayOfWeek = false 
+```
+
 ## Screenshots
 
 ### Time Picker

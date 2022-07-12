@@ -13,6 +13,20 @@ public struct SambagDatePickerResult {
     public var month: SambagMonth
     public var year: Int
     public var day: Int
+    public var asDate: Date? {
+        var dateComps = DateComponents()
+        dateComps.year = year
+        dateComps.month = month.rawValue
+        dateComps.day = day
+        return Calendar.current.date(from: dateComps)
+    }
+    public var dayOfWeek: SambagDayOfWeek? {
+        if let date = asDate {
+            let dayOfWeek = Calendar.current.component(.weekday, from: date)
+            return SambagDayOfWeek(rawValue: dayOfWeek)
+        }
+        return nil
+    }
     
     public init() {
         self.month = .january
@@ -99,6 +113,32 @@ extension SambagDatePickerResult {
         
         func isLeapYear(_ year: Int) -> Bool {
             return (year % 100 != 0 && year % 4 == 0) || year % 400 == 0
+        }
+    }
+}
+
+public enum SambagDayOfWeek: Int {
+    
+    case sunday = 1
+    case monday
+    case tuesday
+    case wednesday
+    case thursday
+    case friday
+    case saturday
+}
+
+extension SambagDayOfWeek: CustomStringConvertible {
+    
+    public var description: String {
+        switch self {
+        case .sunday: return "SUN"
+        case .monday: return "MON"
+        case .tuesday: return "TUE"
+        case .wednesday: return "WED"
+        case .thursday: return "THU"
+        case .friday: return "FRI"
+        case .saturday: return "SAT"
         }
     }
 }

@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
 
     var theme: SambagTheme = .light
+    var hasDayOfWeek: Bool = false
     
     @IBOutlet weak var resultLabel: UILabel!
     
@@ -23,6 +24,22 @@ class ViewController: UIViewController {
     
     @IBAction func showSambagMonthYearPickerViewController(_ sender: UIButton) {
         let vc = SambagMonthYearPickerViewController()
+        var limit = SambagSelectionLimit()
+        limit.selectedDate = Date()
+        let calendar = Calendar.current
+        limit.minDate = calendar.date(
+            byAdding: .year,
+            value: -50,
+            to: limit.selectedDate,
+            wrappingComponents: false
+        )
+        limit.maxDate = calendar.date(
+            byAdding: .year,
+            value: 50,
+            to: limit.selectedDate,
+            wrappingComponents: false
+        )
+        vc.limit = limit
         vc.theme = theme
         vc.delegate = self
         present(vc, animated: true, completion: nil)
@@ -31,10 +48,31 @@ class ViewController: UIViewController {
     
     @IBAction func showSambagDatePickerViewController(_ sender: UIButton) {
         let vc = SambagDatePickerViewController()
+        var limit = SambagSelectionLimit()
+        limit.selectedDate = Date()
+        let calendar = Calendar.current
+        limit.minDate = calendar.date(
+            byAdding: .year,
+            value: -50,
+            to: limit.selectedDate,
+            wrappingComponents: false
+        )
+        limit.maxDate = calendar.date(
+            byAdding: .year,
+            value: 50,
+            to: limit.selectedDate,
+            wrappingComponents: false
+        )
+        vc.hasDayOfWeek = hasDayOfWeek
+        vc.limit = limit
         vc.theme = theme
         vc.delegate = self
         present(vc, animated: true, completion: nil)
 
+    }
+    
+    @IBAction func didChangeDayOfWeek() {
+        hasDayOfWeek = !hasDayOfWeek
     }
     
     @IBAction func didChangeTheme() {
@@ -73,7 +111,11 @@ extension ViewController: SambagMonthYearPickerViewControllerDelegate {
 extension ViewController: SambagDatePickerViewControllerDelegate {
 
     func sambagDatePickerDidSet(_ viewController: SambagDatePickerViewController, result: SambagDatePickerResult) {
-        resultLabel.text = "\(result)"
+        var text = result.description
+        if viewController.hasDayOfWeek, let dayOfWeek = result.dayOfWeek {
+            text = "\(dayOfWeek) " + text
+        }
+        resultLabel.text = text
         viewController.dismiss(animated: true, completion: nil)
     }
     

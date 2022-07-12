@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol AlphaTransitionDelegate: class {
+protocol AlphaTransitionDelegate: AnyObject {
     
     func preAnimation(transition: AlphaTransition)
     func postAnimation(transition: AlphaTransition)
@@ -67,7 +67,7 @@ class AlphaTransition: NSObject, UIViewControllerAnimatedTransitioning {
         let container = context.containerView
         
         var toAlpha: CGFloat = 1
-        let animationOptions: UIViewAnimationOptions
+        let animationOptions: UIView.AnimationOptions
         
         switch style {
         case .presentation:
