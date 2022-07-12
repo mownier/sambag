@@ -45,6 +45,7 @@ public class SambagMonthYearPickerViewController: UIViewController {
     
     public weak var delegate: SambagMonthYearPickerViewControllerDelegate?
     public var theme: SambagTheme = .dark
+    public var limit: SambagSelectionLimit?
     
     public convenience init() {
         self.init(nibName: nil, bundle: nil)
@@ -134,6 +135,26 @@ public class SambagMonthYearPickerViewController: UIViewController {
         yearWheel.cellTextColor = monthWheel.cellTextColor
         yearWheel.selectedIndexPath.row = offset - 1
         
+        guard
+            let selectionLimit = limit,
+            let minDate = selectionLimit.minDate,
+            let maxDate = selectionLimit.maxDate,
+            selectionLimit.isValid else {
+            return
+        }
+        
+        let selectedDate = selectionLimit.selectedDate
+        let minYear = calendar.component(.year, from: minDate)
+        let maxYear = calendar.component(.year, from: maxDate)
+        let selectedYear = calendar.component(.year, from: selectedDate)
+        let selectedMonth = calendar.component(.month, from: selectedDate)
+        
+        let years: [Int] = (minYear...maxYear).map { $0 }
+        yearWheel.items = years.map { "\($0)" }
+        if let index = years.firstIndex(of: selectedYear) {
+            yearWheel.selectedIndexPath.row = index
+        }
+        monthWheel.selectedIndexPath.row = selectedMonth - 1
     }
     
     public override func viewDidLayoutSubviews() {
