@@ -31,6 +31,22 @@ class ViewController: UIViewController {
     
     @IBAction func showSambagDatePickerViewController(_ sender: UIButton) {
         let vc = SambagDatePickerViewController()
+        var limit = SambagSelectionLimit()
+        limit.selectedDate = Date()
+        let calendar = Calendar.current
+        limit.minDate = calendar.date(
+            byAdding: .year,
+            value: -50,
+            to: limit.selectedDate,
+            wrappingComponents: false
+        )
+        limit.maxDate = calendar.date(
+            byAdding: .year,
+            value: 50,
+            to: limit.selectedDate,
+            wrappingComponents: false
+        )
+        vc.limit = limit
         vc.theme = theme
         vc.delegate = self
         present(vc, animated: true, completion: nil)
