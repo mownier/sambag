@@ -33,6 +33,7 @@ public class SambagDatePickerViewController: UIViewController {
     var okayButton: UIButton!
     var cancelButton: UIButton!
     
+    var dayOfWeekWheel: WheelViewController!
     var monthWheel: WheelViewController!
     var yearWheel: WheelViewController!
     var dayWheel: WheelViewController!
@@ -49,6 +50,7 @@ public class SambagDatePickerViewController: UIViewController {
     public var theme: SambagTheme = .dark
     public var suggestor: SambagDatePickerResultSuggestor = SambagDatePickerResult.Suggestor()
     public var limit: SambagSelectionLimit?
+    public var hasDayOfWeek: Bool = false
     
     public convenience init() {
         self.init(nibName: nil, bundle: nil)
@@ -155,6 +157,22 @@ public class SambagDatePickerViewController: UIViewController {
         dayWheel.cellTextColor = monthWheel.cellTextColor
         dayWheel.selectedIndexPath.row = day - 1
         
+        if hasDayOfWeek {
+            let dayOfWeek = calendar.component(.weekday, from: now)
+            items.removeAll()
+            for i in 1...7 {
+                let dayOfWeek = SambagDayOfWeek(rawValue: i)!
+                items.append("\(dayOfWeek)")
+            }
+            dayOfWeekWheel = WheelViewController()
+            dayOfWeekWheel.items = items
+            dayOfWeekWheel.gradientColor = monthWheel.gradientColor
+            dayOfWeekWheel.stripColor = monthWheel.stripColor
+            dayOfWeekWheel.cellTextFont = monthWheel.cellTextFont
+            dayOfWeekWheel.cellTextColor = monthWheel.cellTextColor
+            dayOfWeekWheel.selectedIndexPath.row = dayOfWeek - 1
+        }
+        
         guard
             let selectionLimit = limit,
             let minDate = selectionLimit.minDate,
@@ -169,6 +187,7 @@ public class SambagDatePickerViewController: UIViewController {
         let selectedYear = calendar.component(.year, from: selectedDate)
         let selectedMonth = calendar.component(.month, from: selectedDate)
         let selectedDay = calendar.component(.day, from: selectedDate)
+        let selectedDayOfWeek = calendar.component(.weekday, from: selectedDate)
         
         let years: [Int] = (minYear...maxYear).map { $0 }
         yearWheel.items = years.map { "\($0)" }
@@ -177,6 +196,7 @@ public class SambagDatePickerViewController: UIViewController {
         }
         monthWheel.selectedIndexPath.row = selectedMonth - 1
         dayWheel.selectedIndexPath.row = selectedDay - 1
+        dayOfWeekWheel?.selectedIndexPath.row = selectedDayOfWeek - 1
     }
     
     public override func viewDidLayoutSubviews() {
@@ -200,14 +220,28 @@ public class SambagDatePickerViewController: UIViewController {
         let wheelWidth: CGFloat = 72
         let dayWheelWidth: CGFloat = 52
         let wheelSpacing: CGFloat = 24
-        let totalWidth: CGFloat = (wheelWidth * 2) + dayWheelWidth + (wheelSpacing * 2)
+        var totalWidth: CGFloat = (wheelWidth * 2) + dayWheelWidth + (wheelSpacing * 2)
+        if hasDayOfWeek {
+            totalWidth += (wheelWidth + wheelSpacing)
+        }
         
         rect.origin.y = rect.maxY + 20
         rect.size.width = wheelWidth
         rect.size.height = 210
         rect.origin.x = (contentViewWidth - totalWidth) / 2
-        monthWheel.itemHeight = rect.height / 3
-        monthWheel.view.frame = rect
+        
+        if let wheel = dayOfWeekWheel {
+            wheel.itemHeight = rect.height / 3
+            wheel.view.frame = rect
+            
+            rect.origin.x = rect.maxX + wheelSpacing
+            rect.size.width = wheelWidth
+            monthWheel.itemHeight = wheel.itemHeight
+            monthWheel.view.frame = rect
+        } else {
+            monthWheel.itemHeight = rect.height / 3
+            monthWheel.view.frame = rect
+        }
         
         rect.origin.x = rect.maxX + wheelSpacing
         rect.size.width = dayWheelWidth
@@ -261,13 +295,21 @@ public class SambagDatePickerViewController: UIViewController {
             contentView.addSubview(strip3)
             contentView.addSubview(okayButton)
             contentView.addSubview(cancelButton)
+            if let view = dayOfWeekWheel?.view {
+                view.isUserInteractionEnabled = false
+                contentView.addSubview(view)
+            }
             contentView.addSubview(monthWheel.view)
             contentView.addSubview(yearWheel.view)
             contentView.addSubview(dayWheel.view)
             
+            if let wheel = dayOfWeekWheel {
+                addChild(wheel)
+            }
             addChild(monthWheel)
             addChild(yearWheel)
             addChild(dayWheel)
+            dayOfWeekWheel?.didMove(toParent: self)
             monthWheel.didMove(toParent: self)
             yearWheel.didMove(toParent: self)
             dayWheel.didMove(toParent: self)
@@ -295,6 +337,13 @@ extension SambagDatePickerViewController: WheelViewControllerDelegate {
     
     func wheelViewController(_ wheel: WheelViewController, didSelectItemAtRow row: Int) {
         let suggested = suggestor.suggestedResult(from: result)
+        
+        defer {
+            if let wheel = dayOfWeekWheel, let date = suggested.asDate {
+                let dayOfWeek = Calendar.current.component(.weekday, from: date)
+                wheel.selectedIndexPath.row = dayOfWeek - 1
+            }
+        }
         
         guard suggested != result else {
             return
