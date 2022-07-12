@@ -360,7 +360,7 @@
 				DEVELOPMENT_TEAM = 4WBRGV5Z9M;
 				INFOPLIST_FILE = Sambag/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ner.Sambag;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nir.Sambag;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -374,7 +374,7 @@
 				DEVELOPMENT_TEAM = 4WBRGV5Z9M;
 				INFOPLIST_FILE = Sambag/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ner.Sambag;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nir.Sambag;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
