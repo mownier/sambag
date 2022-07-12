@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'Sambag'
-  s.version  = '1.0.1'
+  s.version  = '1.1.0'
   s.summary  = 'Android Time, Month-Year, and Date pickers implemented in Swift for iOS development'
   s.platform = :ios, '9.0'
   s.license  = { :type => 'MIT', :file => 'LICENSE' }
@@ -9,4 +9,5 @@ Pod::Spec.new do |s|
   s.source   = { :git => 'https://github.com/mownier/sambag.git', :tag => s.version.to_s }
   s.source_files = 'Sambag/Source/*.swift'
   s.requires_arc = true
+  s.swift_versions = ['4.2', '5']
 end
