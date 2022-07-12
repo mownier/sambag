@@ -13,6 +13,20 @@ public struct SambagDatePickerResult {
     public var month: SambagMonth
     public var year: Int
     public var day: Int
+    public var asDate: Date? {
+        var dateComps = DateComponents()
+        dateComps.year = year
+        dateComps.month = month.rawValue
+        dateComps.day = day
+        return Calendar.current.date(from: dateComps)
+    }
+    public var dayOfWeek: SambagDayOfWeek? {
+        if let date = asDate {
+            let dayOfWeek = Calendar.current.component(.weekday, from: date)
+            return SambagDayOfWeek(rawValue: dayOfWeek)
+        }
+        return nil
+    }
     
     public init() {
         self.month = .january
