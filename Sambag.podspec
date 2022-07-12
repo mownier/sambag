@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'Sambag'
-  s.version  = '1.0.1'
+  s.version  = '1.1.0'
   s.summary  = 'Android Time, Month-Year, and Date pickers implemented in Swift for iOS development'
   s.platform = :ios, '9.0'
   s.license  = { :type => 'MIT', :file => 'LICENSE' }
