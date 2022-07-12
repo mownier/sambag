@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
 
     var theme: SambagTheme = .light
+    var hasDayOfWeek: Bool = false
     
     @IBOutlet weak var resultLabel: UILabel!
     
@@ -62,12 +63,16 @@ class ViewController: UIViewController {
             to: limit.selectedDate,
             wrappingComponents: false
         )
-        vc.hasDayOfWeek = true
+        vc.hasDayOfWeek = hasDayOfWeek
         vc.limit = limit
         vc.theme = theme
         vc.delegate = self
         present(vc, animated: true, completion: nil)
 
+    }
+    
+    @IBAction func didChangeDayOfWeek() {
+        hasDayOfWeek = !hasDayOfWeek
     }
     
     @IBAction func didChangeTheme() {
