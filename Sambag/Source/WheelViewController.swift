@@ -123,6 +123,9 @@ extension WheelViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
+        cell.textLabel?.numberOfLines = 1
+        cell.textLabel?.minimumScaleFactor = 0.1
+        cell.textLabel?.adjustsFontSizeToFitWidth = true
         cell.textLabel?.font = cellTextFont
         cell.textLabel?.textAlignment = .center
         cell.textLabel?.textColor = cellTextColor
