@@ -62,6 +62,7 @@ class ViewController: UIViewController {
             to: limit.selectedDate,
             wrappingComponents: false
         )
+        vc.hasDayOfWeek = true
         vc.limit = limit
         vc.theme = theme
         vc.delegate = self
@@ -105,7 +106,11 @@ extension ViewController: SambagMonthYearPickerViewControllerDelegate {
 extension ViewController: SambagDatePickerViewControllerDelegate {
 
     func sambagDatePickerDidSet(_ viewController: SambagDatePickerViewController, result: SambagDatePickerResult) {
-        resultLabel.text = "\(result)"
+        var text = result.description
+        if viewController.hasDayOfWeek, let dayOfWeek = result.dayOfWeek {
+            text = "\(dayOfWeek) " + text
+        }
+        resultLabel.text = text
         viewController.dismiss(animated: true, completion: nil)
     }
     
